@@ -1,21 +1,21 @@
 import React from "react";
+import NavigationBar from './Components/Navigation'
 import Display from "./Components/Display";
+import Footer from './Components/Footer'
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <header className="nav">
+      {/* <header className="nav">
         <img
           src={`https://www.nasa.gov/sites/default/files/thumbnails/image/nasa-logo-web-rgb.png`}
           alt="Official NASA Logo"
         />
-        {/* <DatePicker /> */}
-      </header>
+      </header> */}
+      <NavigationBar />
       <Display />
-      <footer>
-        <span>copyright</span>
-      </footer>
+      {/* <Footer /> */}
     </div>
   );
 }

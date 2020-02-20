@@ -5,9 +5,21 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./Display.css";
 
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 
+const useStyles = makeStyles({
+  root: {
+    background: 'black',
+    height: '100%',
+  },
+});
+
 const Display = props => {
+  const classes = useStyles();
+  
   const [startDate, setStartDate] = useState(new Date());
   const [dateBool, setDateBool] = useState(true);
   const [dateLoader, setDateLoader] = useState("");
@@ -17,11 +29,7 @@ const Display = props => {
 
   const dateHandler = e => {
     setStartDate(e);
-    // const year = startDate.getFullYear();
-    // const month = startDate.getMonth() + 1;
-    // const day = startDate.getDate();
     setDateLoader(e.toISOString().slice(0, 10));
-    // setDateLoader(`${year}-${month}-${day}`);
     setDateBool(dateBool ? false : true);
   };
 
@@ -31,8 +39,6 @@ const Display = props => {
         `https://api.nasa.gov/planetary/apod?api_key=2WMibPBLcne3gkungmmKltcZNFPsM4vlP2xlddJg`
       )
         .then(response => {
-          // console.log(response);
-          // setNasa(response.data);
           setImage(response.data.url);
           setTitle(response.data.title);
           setDesc(response.data.explanation);
@@ -55,35 +61,22 @@ const Display = props => {
   }, [startDate]);
 
   return (
-    <div className="display-container">
+    <Container className={classes.root} height="100%">
       <div className="nasa-image-container">
         <img src={image} alt={title} />
+
       </div>
       <DatePicker
         showPopperArrow={false}
         dateFormat="MM/dd/yyyy"
         selected={startDate}
         onSelect={date => dateHandler(date)}
-        // onChange={date => setStartDate(date)}
       />
       {/* <Button variant="contained" color="primary"  onClick={() => console.log(startDate, dateLoader, dateBool)}>click</Button> */}
 
       <Details title={title} explanation={desc} />
-    </div>
+    </Container>
   );
 };
 
 export default Display;
-
-// const calanderDate = () => {
-//   const year = startDate.getFullYear();
-//   const month = startDate.getMonth();
-//   const day = startDate.getDate();
-
-//   return `${year}-${month}-${day}`;
-// };
-
-// console.log(calanderDate());
-
-// startDate.getFullYear() + "-" + (startDate.getMonth() + 1) + "-" + startDate.getDate();
-// console.log(calanderDate);

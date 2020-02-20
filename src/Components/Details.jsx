@@ -1,31 +1,46 @@
 import React from "react";
-import "./Details.css";
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
-const Details = props => {
+const useStyles = makeStyles({
+  root: {
+    minWidth: 275,
+    marginTop: 15,
+  },
+  bullet: {
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)',
+  },
+  title: {
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+    marginTop: 12
+  },
+});
+
+export default function Details(props) {
+  const classes = useStyles();
+
   return (
-    <div className="info-container">
-      {/* <h3>Pick a date!</h3> */}
-      <h2>{props.title}</h2>
-      <p>{props.explanation}</p>
-    </div>
+    <Card className={classes.root}>
+      <CardContent>
+        <Typography variant="h5" component="h2">
+          {props.title}
+        </Typography>
+        <Typography variant="body2" component="p">
+          {props.explanation}
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="small" >Previous Day</Button>
+      </CardActions>
+    </Card>
   );
-};
-
-export default Details;
-
-
-/* <h2>UGC 12591: The Fastest Rotating Galaxy Known</h2>
-      <p>
-        Why does this galaxy spin so fast? To start, even identifying which type
-        of galaxy UGC 12591 is difficult -- featured on the lower left, it has
-        dark dust lanes like a spiral galaxy but a large diffuse bulge of stars
-        like a lenticular. Surprisingly observations show that UGC 12591 spins
-        at about 480 km/sec, almost twice as fast as our Milky Way, and the
-        fastest rotation rate yet measured. The mass needed to hold together a
-        galaxy spinning this fast is several times the mass of our Milky Way
-        Galaxy. Progenitor scenarios for UGC 12591 include slow growth by
-        accreting ambient matter, or rapid growth through a recent galaxy
-        collision or collisions -- future observations may tell. The light we
-        see today from UGC 12591 left about 400 million years ago, when trees
-        were first developing on Earth.
-      </p> */
+}

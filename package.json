@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.9.3",
     "axios": "^0.19.2",
+    "material-ui-image": "^3.2.3",
     "react": "^16.8.6",
     "react-datepicker": "^2.12.1",
     "react-dom": "^16.8.6",
