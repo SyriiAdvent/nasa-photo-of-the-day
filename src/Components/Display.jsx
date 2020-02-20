@@ -18,10 +18,9 @@ const Display = props => {
 
   const dateHandler = e => {
     setStartDate(e);
-    const year = startDate.getFullYear();
-    const month = startDate.getMonth() + 1;
-    const day = startDate.getDate();
-    var rightNow = new Date();
+    // const year = startDate.getFullYear();
+    // const month = startDate.getMonth() + 1;
+    // const day = startDate.getDate();
     setDateLoader(e.toISOString().slice(0,10))
     // setDateLoader(`${year}-${month}-${day}`);
     setDateBool(dateBool ? false : true);
