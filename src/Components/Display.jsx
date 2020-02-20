@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Details from "./Details";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import axios from "axios";
 import "./Display.css";
 
+import Button from '@material-ui/core/Button';
+
 const Display = props => {
-  // let today = new Date();
   const [startDate, setStartDate] = useState(new Date());
   const [dateBool, setDateBool] = useState(true);
-  // const [date, setDate] = useState(startDate);
-  const [dateLoader, setDateLoader] = useState('');
-  // const [nasa, setNasa] = useState([]);
+  const [dateLoader, setDateLoader] = useState("");
   const [image, setImage] = useState("");
   const [desc, setDesc] = useState("");
   const [title, setTitle] = useState("");
@@ -21,7 +20,7 @@ const Display = props => {
     // const year = startDate.getFullYear();
     // const month = startDate.getMonth() + 1;
     // const day = startDate.getDate();
-    setDateLoader(e.toISOString().slice(0,10))
+    setDateLoader(e.toISOString().slice(0, 10));
     // setDateLoader(`${year}-${month}-${day}`);
     setDateBool(dateBool ? false : true);
   };
@@ -49,7 +48,7 @@ const Display = props => {
           setImage(response.data.url);
           setTitle(response.data.title);
           setDesc(response.data.explanation);
-          setDateBool(true)
+          setDateBool(true);
         })
         .catch(error => console.error("Could not obtain Image data ", error));
     }
@@ -65,9 +64,10 @@ const Display = props => {
         dateFormat="MM/dd/yyyy"
         selected={startDate}
         onSelect={date => dateHandler(date)}
-        onChange={date => setStartDate(date)}
+        // onChange={date => setStartDate(date)}
       />
-      <button onClick={() => console.log(startDate, dateLoader, dateBool)}>clicky</button>
+      {/* <Button variant="contained" color="primary"  onClick={() => console.log(startDate, dateLoader, dateBool)}>click</Button> */}
+
       <Details title={title} explanation={desc} />
     </div>
   );
